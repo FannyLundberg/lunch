@@ -12,8 +12,9 @@ image.src = "img/semla.jpg"
 root.append(welcome, image)
 
 
+
 // Kalla på veckodagsfunktionen efter tre sekunder
-setInterval(() => {
+setTimeout(() => {
   
   root.innerHTML = "";
   
@@ -28,33 +29,52 @@ function todaysFood() {
   // Variabler
   let d = new Date();
   let day = d.getDay();
+
+  let mealsArray = [
+    {
+      day: "Måndag",
+      food: "Idag serveras pannkakor",
+    },
+    {
+      day: "Tisdag",
+      food: "Idag serveras köttbullar och potatismos",
+    },
+    {
+      day: "Onsdag",
+      food: "Idag serveras sushi",
+    },
+    {
+      day: "Torsdag",
+      food: "Idag serveras nötfärsbiffar och potatis",
+    },
+    {
+      day: "Fredag",
+      food: "Idag serveras kycklingsallad",
+    },
+
+  ]
   
   // Skriv ut för dagen
   switch (day) {
     case 1:
-      day = "Måndag";
-      food = "Idag serveras pannkakor"
-      price = "99 kronor"
+      day = mealsArray[1].day
+      food = mealsArray[1].food
       break;
     case 2:
-      day = "Tisdag";
-      food = "Idag serveras köttbullar och potatismos"
-      price = "99 kronor"
+      day = mealsArray[2].day
+      food = mealsArray[2].food
       break;
     case 3:
-      day = "Onsdag";
-      food = "Idag serveras sushi"
-      price = "99 kronor"
+      day = mealsArray[3].day
+      food = mealsArray[3].food
       break;
     case 4:
-      day = "Torsdag";
-      food = "Idag serveras nötfärsbiffar och potatis"
-      price = "99 kronor"
+      day = mealsArray[4].day
+      food = mealsArray[4].food
       break;
     case 5:
-      day = "Fredag";
-      food = "Idag serveras kycklingsallad"
-      price = "99 kronor"
+      day = mealsArray[5].day
+      food = mealsArray[5].food
       break;
     case 6:
       day = "Lördag";
@@ -66,7 +86,6 @@ function todaysFood() {
       break;
     default:
       day = "Okänd dag";
-
   }
   
   // Skapa element för att skriva ut dag, mat och pris
@@ -78,19 +97,21 @@ function todaysFood() {
   foodText.innerText = food;
   root.append(foodText);
 
-  let priceText = document.createElement("h4");
-  priceText.innerText = price;
-  root.append(priceText);
-
   // Knapp/p för att visa hela veckans meny
   let weekMenu = document.createElement("p");
-  weekMenu.innerText = "Se hela veckans menu";
+  weekMenu.innerText = "Se hela veckans meny";
   root.append(weekMenu);
 
-  weekMenu.addEventListener("click", showMenuWeek);
-};
 
-// Visa hela veckans meny
-function showMenuWeek() {
-  console.log("Klick på veckans meny");
-}
+  // När man klickar för att se hela menyn
+  weekMenu.addEventListener("click", () => {
+    console.log("Klick på veckans meny");
+
+    let weekMenuWrapper = document.createElement("div");
+    root.append(weekMenuWrapper);
+
+    let weekMenu = document.createElement("p");
+    weekMenu.innerText = mealsArray[0].day
+    root.append(weekMenu);
+  });
+};
