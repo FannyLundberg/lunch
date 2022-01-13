@@ -32,27 +32,34 @@ function todaysFood() {
 
   let mealsArray = [
     {
+      day: "Söndag",
+      food: "Det är stängt",
+    },
+    {
       day: "Måndag",
-      food: "Idag serveras pannkakor",
+      food: "Dagens rätt: Pannkakor",
     },
     {
       day: "Tisdag",
-      food: "Idag serveras köttbullar och potatismos",
+      food: "Dagens rätt: Köttbullar och potatismos",
     },
     {
       day: "Onsdag",
-      food: "Idag serveras sushi",
+      food: "Dagens rätt: Sushi",
     },
     {
       day: "Torsdag",
-      food: "Idag serveras nötfärsbiffar och potatis",
+      food: "Dagens rätt: Nötfärsbiffar och potatis",
     },
     {
       day: "Fredag",
-      food: "Idag serveras kycklingsallad",
+      food: "Dagens rätt: Kycklingsallad",
     },
-
-  ]
+    {
+      day: "Lördag",
+      food: "Det är stängt",
+    }
+  ];
   
   // Skriv ut för dagen
   switch (day) {
@@ -77,12 +84,12 @@ function todaysFood() {
       food = mealsArray[5].food
       break;
     case 6:
-      day = "Lördag";
-      food = "Det är stängt"
+      day = mealsArray[6].day
+      food = mealsArray[6].food
       break;
     case 0:
-      day = "Söndag";
-      food = "Det är stängt"
+      day = mealsArray[0].day
+      food = mealsArray[0].food
       break;
     default:
       day = "Okänd dag";
@@ -105,13 +112,13 @@ function todaysFood() {
 
   // När man klickar för att se hela menyn
   weekMenu.addEventListener("click", () => {
-    console.log("Klick på veckans meny");
 
     let weekMenuWrapper = document.createElement("div");
     root.append(weekMenuWrapper);
-
+   
     let weekMenu = document.createElement("p");
-    weekMenu.innerText = mealsArray[0].day
+    weekMenu.innerHTML = "<b>" + mealsArray[1].day + "</b>" + "<br>" + mealsArray[1].food + "<br><br>" + "<b>" + mealsArray[2].day +  "</b>" + "<br>" + mealsArray[2].food + "<br><br>" + "<b>" + mealsArray[3].day + "</b>" + "<br>" + mealsArray[3].food + "<br><br>" + "<b>" + mealsArray[4].day + "</b>" + "<br>" + mealsArray[4].food + "<br><br>" + "<b>" + mealsArray[5].day + "</b>" + "<br>" + mealsArray[5].food;
     root.append(weekMenu);
-  });
+
+  }, {once: true});
 };
